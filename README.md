@@ -51,7 +51,7 @@ Setting up Film Scout on your local machine is really easy. You can setup Film S
 
       mysql> show tables;
       +------------------------+
-      | Tables_in_dreamteam_db |
+      | Tables_in_filmscout_db |
       +------------------------+
       | alembic_version        |
       | user                   |
