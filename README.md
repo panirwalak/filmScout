@@ -39,6 +39,8 @@ Setting up Film Scout on your local machine is really easy. You can setup Film S
     ```
     Migrating the data (in film scout venv)
     ```
+    export FLASK_CONFIG=development
+    export FLASK_APP=run.py
     flask db migrate
     flask db upgrade
     
