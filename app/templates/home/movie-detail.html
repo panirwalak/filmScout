@@ -1,0 +1,23 @@
+{% import "bootstrap/wtf.html" as wtf %} {% extends "base.html" %} {% block title %}Dashboard{% endblock %} {% block body
+%}
+<div class="wrapper" style="margin-top:5%">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-20">
+                <div class="container">
+                    <div id="movie" class="well"></div>
+                </div>
+
+                <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+                    crossorigin="anonymous"></script>
+                <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+                <script src="{{ url_for('static', filename='js/MovieDetails.js') }}"></script>
+                <script>
+                    getMovie();
+                </script>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

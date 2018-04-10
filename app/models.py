@@ -48,34 +48,70 @@ class User(UserMixin, db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# class Department(db.Model):
-#     """
-#     Create a Department table
-#     """
+class Keywords(db.Model):
+    keyword_id = db.Column(db.Integer, primary_key=True)
+    keyword = db.Column(db.String(20))
 
-#     __tablename__ = 'departments'
+class Jobs(db.Model):
+    job_id = db.Column(db.Integer, primary_key=True)
+    job = db.Column(db.String(20))
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(60), unique=True)
-#     description = db.Column(db.String(200))
-#     employees = db.relationship('Employee', backref='department',
-#                                 lazy='dynamic')
+class Genres(db.Model):
+    genre_id = db.Column(db.Integer, primary_key=True)
+    parent_genre_id = db.Column(db.Integer)
+    genre_name = db.Column(db.String(20))
 
-#     def __repr__(self):
-#         return '<Department: {}>'.format(self.name)
+class People(db.Model):
+    person_id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
+    name = db.Column(db.String(50))
 
-# class Role(db.Model):
-#     """
-#     Create a Role table
-#     """
+class MPAA(db.Model):
+    mpaa_rating_id = db.Column(db.Integer, primary_key=True)
+    rating =  db.Column(db.String(5))
 
-#     __tablename__ = 'roles'
+class Films(db.Model):
+    film_id =  db.Column(db.Integer, primary_key=True)
+    imdb_id = db.Column(db.Integer)
+    title = db.Column(db.String(60))
+    release_date = db.Column(db.Date)
+    release_year = db.Column(db.Integer)
+    mpaa_rating_id = db.Column(db.Integer)
+    trailer_url = db.Column(db.String(100))
+    poster_url = db.Column(db.String(100))
+    synopsis = db.Column(db.String(600))
+    runtime_mins = db.Column(db.Integer)
+    quality_rating =  db.Column(db.Float)
+    on_netflix = db.Column(db.Boolean)
+    on_hulu = db.Column(db.Boolean)
+    amazon_cost = db.Column(db.Integer)
+    tmdb_poster_path = db.Column(db.String(100))
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(60), unique=True)
-#     description = db.Column(db.String(200))
-#     employees = db.relationship('Employee', backref='role',
-#                                 lazy='dynamic')
+#many to many tables
+CastCrew = db.Table('cast_crew',
+    db.Column('film_id', db.Integer),
+    db.Column('person_id', db.Integer),
+    db.Column('job_id', db.Integer)
+)
 
-#     def __repr__(self):
-#         return '<Role: {}>'.format(self.name)
+FilmGenres = db.Table('film_genres',
+    db.Column('film_id', db.Integer),
+    db.Column('genre_id', db.Integer),
+)
+
+FilmKeywords = db.Table('film_keywords',
+    db.Column('film_id', db.Integer),
+    db.Column('keyword_id', db.Integer),
+)
+
+Watchlist = db.Table('watchlist',
+    db.Column('user_id', db.Integer),
+    db.Column('film_id', db.Integer)
+)
+
+WatchedList = db.Table('watched_list',
+    db.Column('user_id', db.Integer),
+    db.Column('film_id', db.Integer),
+    db.Column('rating', db.Integer)
+)

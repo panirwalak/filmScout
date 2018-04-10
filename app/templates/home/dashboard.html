@@ -1,18 +1,102 @@
+{% import "bootstrap/wtf.html" as wtf %}
 {% extends "base.html" %}
 {% block title %}Dashboard{% endblock %}
 {% block body %}
-<div class="intro-header">
+<div class="wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="intro-message">
-                    <h1>The Dashboard</h1>
-                    <h3>We made it here!</h3>
-                    <hr class="intro-divider">
-                    </ul>
-                </div>
+            <div class="col-lg-20">
+                    <!-- <div class="jumbotron"> -->
+                            <h3 style="margin-top:10%"class="text-left">I want a movie that's a...</h3>
+                            <form id="searchForm">
+                                <div>
+                                    <div>
+                                        <label class="form-label">Title</label>
+                                        <input type="text" class="form-control" id="title" placeholder="title...">
+                                    </div>
+                                    <br>
+                                    <h4>OR</h4>
+                                    <div style="display:inline-block;width:50%;">
+                                        <label class="form-label">Genres</label>
+                                        <br>
+                                        <select  class="form-control" id='genres' size=10 style="width:150px;" multiple>
+                                                <option value = 28>Action</option>
+                                                <option value = 12>Adventure</option>
+                                                <option value = 16>Animation</option>
+                                                <option value = 35>Comedy</option>
+                                                <option value = 80>Crime</option>
+                                                <option value = 99>Documentary</option>
+                                                <option value = 18>Drama</option>
+                                                <option value = 10751>Family</option>
+                                                <option value = 14>Fantasy</option>
+                                                <option value = 36>History</option>
+                                                <option value = 27>Horror</option>
+                                                <option value = 10402>Music</option>
+                                                <option value = 9648>Mystery</option>
+                                                <option value = 10749>Romance</option>
+                                                <option value = 878>Science Fiction</option>
+                                                <option value = 53>Thriller</option>
+                                                <option value = 10770>TV Movie</option>
+                                                <option value = 10752>War</option>
+                                                <option value = 37>Western</option>
+                                        </select>
+                                    </div>
+                                    <div style="display:inline-block;width:25%">
+                                        <label class="form-label">With an MPAA rating...</label>
+                                        <br>
+                                        <select id="mpaa" class="form-control" size=10 style="width:100px;" multiple>
+                                                <option value = 'G'>G</option>
+                                                <option value = 'PG-13'>PG-13</option>
+                                                <option value = 'R'>R</option>
+                                                <option value = 'NC-17'>NC-17</option>
+                                                <option value = 'PG'>PG</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="display:inline-block;width:30%;">
+                                        <label class="form-label" >About...</label>
+                                        <input type="text" class="form-control" name="keywords" id="keywords1" placeholder="keyword...">
+                                        <!-- <input type="text" class="form-control" name="keywords" id="keywords2"  placeholder="keyword...">
+                                        <input type="text" class="form-control" name="keywords" id="keywords3"  placeholder="keyword...">
+                                        <input type="text" class="form-control" name="keywords" id="keywords4"  placeholder="keyword..."> -->
+                                    </div>
+                                <div style="display:inline-block;width:30%;margin-left:2%;">
+                                    <label class="form-label" >Starring...</label>
+                                    <input type="text" class="form-control" name="actors" id="actors1" placeholder="actor...">
+                                    <!-- <input type="text" class="form-control" name="actors" id="actors2" placeholder="actor...">
+                                    <input type="text" class="form-control" name="actors" id="actors3" placeholder="actor...">
+                                    <input type="text" class="form-control" name="actors" id="actors4" placeholder="actor..."> -->
+                                </div>
+                                <div  style="display:inline-block;width:30%;margin-left:2%;"> 
+                                    <label class="form-label">Directed By...</label>
+                                    <input type="text" class="form-control" name="directors" id="directors1" placeholder="director...">
+                                    <!-- <input type="text" class="form-control" name="directors" id="directors2" placeholder="director...">
+                                    <input type="text" class="form-control" name="directors" id="directors3" placeholder="director...">
+                                    <input type="text" class="form-control" name="directors" id="directors4" placeholder="director..."> -->
+                                </div>
+                                <div>
+                                    <label style="margin-top:10px" class="form-label">Made</label><label style="margin-left:50%" class="form-label">Rated at least...</label>
+                                    <br>
+                                    <input type="radio" id="time" name="when" value="before"><label style="margin-left:10px" class="form-label">Before</label>
+                                    <input style="margin-left:2%" id="time" type="radio" name="when" value="after"><label style="margin-left:10px" class="form-label">After</label> <input type="text" class="form-control" style="width:25%;display:inline-block;margin-left:2%" id="year" placeholder="year..." >
+                                    <input type="text" id='rating' class="form-control" style="width:15%;display:inline-block;margin-left:10.5%" placeholder="up to 10">
+                                </div>
+                                <input class="form-control" style="align-self:center;margin-top:2%;width:25%"type="submit" >
+                            </form>
+                        </div>
+                    <!-- </div> -->
+                    <br>
+                    <div class="container">
+                        <div id="movies" class="row" ></div>
+                    </div>
+                
+                    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+                        crossorigin="anonymous"></script>
+                    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+                    <script src="{{ url_for('static', filename='js/MovieFormSearch.js') }}"></script>
             </div>
         </div>
     </div>
+    
 </div>
 {% endblock %}

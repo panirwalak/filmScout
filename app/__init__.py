@@ -1,17 +1,16 @@
 # app/__init__.py
 
-# third-party imports
 from flask import Flask
+from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 # local imports
 from config import app_config
 
-#third-party imports
-from flask_login import LoginManager
-from flask_migrate import Migrate
-from flask_bootstrap import Bootstrap
-
+db = SQLAlchemy()
+login_manager = LoginManager()
 
 
 # db variable initialization
@@ -27,13 +26,11 @@ def create_app(config_name):
     
     Bootstrap(app)
     db.init_app(app)
-
     login_manager.init_app(app)
     login_manager.login_message = "You must be logged in to access this page."
     login_manager.login_view = "auth.login"
 
     migrate = Migrate(app, db)
-    
 
     from app import models
 
@@ -45,7 +42,5 @@ def create_app(config_name):
 
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
-
-    from app import models
 
     return app
