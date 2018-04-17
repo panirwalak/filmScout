@@ -121,7 +121,7 @@ $(document).ready(() => {
 
         let rating = $('#rating').val();
         if (rating > 10 || rating < 10) {
-            rating = 1;
+            rating = "";
         }
 
         // let keywords = $('input[name^=keywords]').map(function (idx, elem) {
@@ -159,7 +159,7 @@ let IMG_SIZE_XSMALL = 'w45';
 let IMG_SIZE_SMALL = 'w200';
 let IMG_SIZE_LARGE = 'w342';
 var image_url;
-var DISCOVER_URL = 'https://api.themoviedb.org/3/discover/movie?api_key=f0060a08bbd35f8312d0c4cc87b05595&language=en-US&sort_by=popularity.asc&certification_country=en-us&include_adult=true&page=1&';
+var DISCOVER_URL = 'https://api.themoviedb.org/3/discover/movie?api_key=f0060a08bbd35f8312d0c4cc87b05595&language=en-US&sort_by=popularity.asc&certification_country=en-us&include_adult=false&page=1&';
 
 // function getPersonId(person){
 //     return axios.get('https://api.themoviedb.org/3/search/person?api_key=' + API_KEY + "&query=" + person)
@@ -176,7 +176,7 @@ String.prototype.replaceAll = function (search, replacement) {
 };
 
 function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBefore, year, rating) {
-    var DISCOVER_URL = 'https://api.themoviedb.org/3/discover/movie?api_key=f0060a08bbd35f8312d0c4cc87b05595&language=en-US&sort_by=vote_average.asc&certification_country=en-us&include_adult=true&page=1';
+    var DISCOVER_URL = 'https://api.themoviedb.org/3/discover/movie?api_key=f0060a08bbd35f8312d0c4cc87b05595&language=en-US&sort_by=popularity.desc&certification_country=en-us&include_adult=false&page=1';
 
     if (year != "") {
         if (isBefore) {
@@ -206,7 +206,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
     }
 
     if (keyword1 != "" && actor1 != "" && director1 != "") {
-        DISCOVER_URL = DISCOVER_URL + "&with_keyword="
+        DISCOVER_URL = DISCOVER_URL + "&with_keywords="
         axios.get('https://api.themoviedb.org/3/search/keyword?api_key=' + API_KEY + "&query=" + keyword1)
             .then((response) => {
                 console.log(response);
@@ -316,7 +316,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
     }
 
     if (keyword1 != "" && director1 != "" && actor1 == "") {
-        DISCOVER_URL = DISCOVER_URL + "&with_keyword="
+        DISCOVER_URL = DISCOVER_URL + "&with_keywords="
         axios.get('https://api.themoviedb.org/3/search/keyword?api_key=' + API_KEY + "&query=" + keyword1)
             .then((response) => {
                 console.log(response);
@@ -370,7 +370,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
     }
 
     if (keyword1 != "" && actor1 != "" && director1 == "") {
-        DISCOVER_URL = DISCOVER_URL + "&with_keyword="
+        DISCOVER_URL = DISCOVER_URL + "&with_keywords="
         axios.get('https://api.themoviedb.org/3/search/keyword?api_key=' + API_KEY + "&query=" + keyword1)
             .then((response) => {
                 console.log(response);
@@ -423,8 +423,10 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
     }
 
     if (keyword1 != "" && actor1 == "" && director1 == "") {
-        DISCOVER_URL = DISCOVER_URL + "&with_keyword="
-        axios.get('https://api.themoviedb.org/3/search/keyword?api_key=' + API_KEY + "&query=" + keyword1)
+        DISCOVER_URL = DISCOVER_URL + "&with_keywords="
+        console.log(keyword1.replaceAll(" ", "%20"))
+        console.log('https://api.themoviedb.org/3/search/keyword?api_key=' + API_KEY + "&query=" + keyword1.replaceAll(" ", "%20"))
+        axios.get('https://api.themoviedb.org/3/search/keyword?api_key=' + API_KEY + "&query=" + keyword1.replaceAll(" ", "%20"))
             .then((response) => {
                 console.log(response);
                 let id = response.data.results[0].id;
@@ -602,8 +604,8 @@ function getMovies(title) {
                 output += `
             <div class="col-md-3">
               <div class="well text-center">
-              <img src= "${image_url}" id="movie-poster">
-                <h5>${movie.title}</h5>
+              <img src= "${image_url}" id="movie-poster" name="movie-poster">
+                <h5 name="movie-title">${movie.title}</h5>
                 <form action="/movieDetails" method="get">
                 <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Movie Details</a>
                 </form>

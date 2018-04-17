@@ -15,6 +15,21 @@
                 <script>
                     getMovie();
                 </script>
+                <!-- <script>
+                    $("#watch_form").submit(function (e) {
+                        e.preventDefault(); // Prevent the normal form submit
+
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ url_for('home.addToWatchList') }}",
+                            data: $("#watch_form").serialize(),
+                            success: function (data) {
+                                console.log(data);
+                                // Do something here. For example, the server can return JSON here and you use Js to create the template client-side, or you server can return an HTML fragment and here you append it to a dom node
+                            }
+                        });
+                    });
+                </script> -->
             </div>
         </div>
     </div>

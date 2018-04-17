@@ -2,11 +2,38 @@
 
 from flask import flash, redirect, render_template, url_for
 from flask_login import login_required, login_user, logout_user
+from sqlalchemy import update
 
 from . import auth
-from forms import LoginForm, RegistrationForm
+from forms import LoginForm, RegistrationForm, ChangePasswordForm
 from .. import db
 from ..models import User
+from werkzeug.security import generate_password_hash, check_password_hash
+
+@auth.route('/change-password', methods=['GET', 'POST'])
+def changePassword():
+    """
+    Change the users password
+    """
+    form2 = ChangePasswordForm()
+    email = form2.email.data
+    if form2.validate_on_submit():
+
+        # check whether employee exists in the database and whether
+        user = User.query.filter_by(email=email).first()
+        if user is not None:
+            user = User.query.filter_by(email=email).first_or_404()
+
+            user.password_hash = generate_password_hash(form2.password.data)
+            db.session.commit()
+           
+            flash('You have successfully changed your password! You may now login.')
+            return redirect(url_for('auth.login'))
+        # when email doesn't exist
+        else:
+            flash('Invalid email')
+
+    return render_template('auth/change-password-email.html', form=form2, title='Change Password')
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
@@ -59,6 +86,7 @@ def login():
 
     # load login template
     return render_template('auth/login.html', form=form, title='Login')
+
 
 @auth.route('/logout')
 @login_required

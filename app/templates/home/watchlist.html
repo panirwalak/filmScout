@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block body %}
+<div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="container">
+                    <div id="movies" class="row" style="margin-top:5%">
+                        <h3>Films I Want to Watch</h3>
+                        <br>
+                        {% for entry in watchlist %}
+                        <div class="col-md-3">
+                            <div class="well text-center">
+                                <img src="{{entry.film_poster_path}}" id="movie-poster" name="movie-poster">
+                                <h5 name="movie-title">{{entry.film_title}}</h5>
+                                <form action="/movieDetails" method="get">
+                                    <button type=submit name="detail-button" onclick="movieSelected('{{entry.film_id}}')" value="{{entry.film_id}}" class="btn btn-primary">Movie Details</a>
+                                </form>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

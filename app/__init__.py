@@ -5,6 +5,8 @@ from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from itsdangerous import URLSafeTimedSerializer
+
 
 # local imports
 from config import app_config
@@ -16,6 +18,7 @@ login_manager = LoginManager()
 # db variable initialization
 db = SQLAlchemy()
 
+ts = URLSafeTimedSerializer('p9Bv<3Eid9%$i01')
 # login manage initialization
 login_manager = LoginManager()
 
