@@ -6,6 +6,8 @@
 
 1. Install Python 2.7, Git, MySQL Ver 14.14 Distrib 5.7.21, virtualenv, in your computer, if you don't have it already.
 
+NOTE: if you are using Python 3 you may need to use pip3 instead of pip
+
 - virtualenv installation
 ```
 sudo pip install virtualenv
