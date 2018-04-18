@@ -94,8 +94,8 @@ function getMovie() {
                                             </select>
                                             <button id="watch-button" type=submit name="watched" value="${movie.id}+${movie.title}+${image_url}" class="btn btn-primary">I've seen it!</button>
                                             </form>
-                                            <form id="watch_form" action="/addToWatchList" method="post" style="float:left">
-                                            <button type=submit name="watch" value="${movie.id}+${movie.title}+${image_url}" class="btn btn-primary">I want to watch!</button>
+                                            <form id="watch_form" action="/addToWatchList" method="post" style="float:right;margin-top:-9.7%">
+                                            <button type=submit name="watch" value="${movie.id}+${movie.title}+${image_url}" class="btn btn-primary">Added to watchlist!</button>
                                             </form>
                                     </div>
                                     <div class="col-md-8">

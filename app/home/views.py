@@ -26,6 +26,15 @@ def helpMe():
 
     return render_template('home/help.html', title="Help")
 
+
+@home.route('/About Us', methods=['GET', 'POST'])
+def about():
+    """
+    Render the about us page
+    """
+
+    return render_template('home/about.html', title="About")
+
 @home.route('/myAccount', methods=['GET', 'POST'])
 @login_required
 def myAccount():
@@ -150,7 +159,7 @@ def changePassword():
         else:
             flash('Invalid email')
 
-    return render_template('home/change-password.html', title="Change Password", form=form)
+    return render_template('home/change.html', title="Change Password", form=form)
 
 
 @home.route('/dashboard', methods=['GET', 'POST'])
@@ -161,14 +170,20 @@ def dashboard():
     """
     return render_template('home/dashboard.html', title="Dashboard")
 
-@home.route('/movieDetails')
+@home.route('/movieDetails/<FilmId>', methods=['GET', 'POST'])
 @login_required
-def movieDetails():
+def movieDetails(FilmId):
     """
     Render movie details
     """
-    # load results template
-    return render_template('home/movie-detail.html', title="Detail")
+    #print(FilmId)
+    if Watchlist.query.filter_by(film_id=FilmId).first():
+        return render_template('home/movie-detail-addedwatch.html', title="Detail")
+    elif Watchedlist.query.filter_by(film_id=FilmId).first():
+        return render_template('home/movie-detail-addedwatched.html', title="Detail")
+    else:
+        # load results template
+        return render_template('home/movie-detail.html', title="Detail")
 
 @home.route('/addToWatchList', methods=['GET', 'POST'])
 @login_required
@@ -184,15 +199,16 @@ def addToWatchList():
     moviePoster = string[2]
     watchlist = Watchlist(user_id=userId, film_id=movieId, film_title=movieTitle, film_poster_path=moviePoster)
 
+    watched = Watchedlist.query.filter_by(film_id=movieId).first()
+
     if Watchlist.query.filter_by(film_id=movieId).first():
-        flash('You already added this movie')
-        return redirect(url_for('home.movieDetails'))
-    else:
+        return render_template('home/movie-detail-addedwatch.html', title="Detail")
+    elif watched is None:
         db.session.add(watchlist)
         db.session.commit()
-        return redirect(url_for('home.movieDetails'))
-
-    # return redirect(url_for('home.movieDetails'))
+        return render_template('home/movie-detail-addedwatch.html', title="Detail")
+    else:
+        return redirect(url_for('home.movieDetails', FilmId=movieId))
     # return render_template('home/movie-detail.html', title="Detail")
 
 
@@ -211,7 +227,22 @@ def watchlist():
 
     return render_template('home/watchlist.html', title="Watchlist", watchlist=watchlist)
 
+@home.route('/deleteWatch', methods=['GET', 'POST', 'DELETE'])
+@login_required
+def deleteWatch():
+    """
+    Delete a movie to from watchlist
+    """
+    filmId = request.form["delete"]
+    
+    record = Watchlist.query.filter_by(id=1)
+    print(record.film_id)
+    print(record.user_id)
 
+    db.session.delete(record)
+    db.session.commit()
+
+    return redirect(url_for('home.watchlist'))
 
 @home.route('/addToWatchedList', methods=['GET', 'POST'])
 @login_required
@@ -227,15 +258,20 @@ def addToWatchedList():
     moviePoster = string[2]
     rating = request.form["rating"]
 
+    watch = Watchlist.query.filter_by(film_id=movieId).first()
+
     watchedlist = Watchedlist(user_id=userId, film_id=movieId, rating=rating, film_title=movieTitle, film_poster_path=moviePoster)
 
     if Watchedlist.query.filter_by(film_id=movieId).first():
-            flash('You already rated this movie')
-            return redirect(url_for('home.movieDetails'))
-    else:
+        return render_template('home/movie-detail-addedwatched.html', title="Detail")
+    elif watch is None:
         db.session.add(watchedlist)
         db.session.commit()
-        return redirect(url_for('home.movieDetails'))
+        return render_template('home/movie-detail-addedwatched.html', title="Detail")
+    else:
+        return redirect(url_for('home.movieDetails', FilmId=movieId))
+
+    
     # load results template
 
 

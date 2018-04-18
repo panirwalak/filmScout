@@ -12,9 +12,17 @@
                             <div class="well text-center">
                                 <img src="{{entry.film_poster_path}}" id="movie-poster" name="movie-poster">
                                 <h5 name="movie-title">{{entry.film_title}}</h5>
-                                <form action="/movieDetails" method="get">
-                                    <button type=submit name="detail-button" onclick="movieSelected('{{entry.film_id}}')" value="{{entry.film_id}}" class="btn btn-primary">Film Details</a>
+                                <form action="/movieDetails/{{entry.film_id}}" method="get">
+                                    <button type=submit name="detail-button" onclick="movieSelected('{{entry.film_id}}')" value="{{entry.film_id}}" class="btn btn-primary">Film Details</button>
+                                    <br>
                                 </form>
+                                <!-- <form action-"/deleteWatch" method="post"> 
+                                    <button name="delete" type="submit" style="margin-top:3%" class="btn btn-primary" value="{{entry.film_id}}">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </button>
+                                    
+                                </form> -->
+                                
                             </div>
                         </div>
                         {% endfor %}

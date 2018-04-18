@@ -1,102 +1,88 @@
 // function getValues(){
-// $(document).ready(() => {
+$(document).ready(() => {
 
-//     $("#keywords1").focus();
+    // $("#title").focus();
 
-//     $("#keywords1").blur(function () {
-//         if ($(this).val() != '') {
-//             $("#keywords2").removeAttr("disabled");
-//         }
-//         else {
-//             $("#keywords2").attr("disabled", "disabled");
-//             $("#keywords3").attr("disabled", "disabled");
-//             $("#keywords4").attr("disabled", "disabled");
-//         }
-//     });
+    // $("#title").blur(function () {
+    //     if ($(this).val() != '') {
+    //         $("#genres").attr("disabled", "disabled");
+    //         $("#mpaa").attr("disabled", "disabled");
+    //         $("#keywords1").attr("disabled", "disabled");
+    //         $("#actors1").attr("disabled", "disabled");
+    //         $("#directors1").attr("disabled", "disabled");
+    //         $("#time").attr("disabled", "disabled");
+    //         $("#year").attr("disabled", "disabled");
+    //         $("#rating").attr("disabled", "disabled");
+    //     }
+    // });
 
-//     $("#keywords2").blur(function () {
-//         if ($(this).val() != '') {
-//             $("#keywords3").removeAttr("disabled");
-//         }
-//         else {
-//             $("#keywords3").attr("disabled", "disabled");
-//             $("#keywords4").attr("disabled", "disabled");
-//         }
-//     });
+    // $("#rating").focus();
 
-//     $("#keywords3").blur(function () {
-//         if ($(this).val() != '') {
-//             $("#keywords4").removeAttr("disabled");
-//         }
-//         else {
-//             $("#keywords4").attr("disabled", "disabled");
-//         }
-//     });
-//     //actors
-//     $("#actors1").focus();
+    // $("#rating").blur(function () {
+    //     if ($(this).val() != '') {
+    //         $("#title").attr("disabled", "disabled");
+    //     }
+    // });
 
-//     $("#actors1").blur(function () {
-//         if ($(this).val() != '') {
-//             $("#actors12").removeAttr("disabled");
-//         }
-//         else {
-//             $("#actors2").attr("disabled", "disabled");
-//             $("#actors3").attr("disabled", "disabled");
-//             $("#actors4").attr("disabled", "disabled");
-//         }
-//     });
 
-//     $("#actors2").blur(function () {
-//         if ($(this).val() != '') {
-//             $("#actors3").removeAttr("disabled");
-//         }
-//         else {
-//             $("#actors3").attr("disabled", "disabled");
-//             $("#actors4").attr("disabled", "disabled");
-//         }
-//     });
+    // $("#year").focus();
 
-//     $("#actors3").blur(function () {
-//         if ($(this).val() != '') {
-//             $("#actors4").removeAttr("disabled");
-//         }
-//         else {
-//             $("#actors4").attr("disabled", "disabled");
-//         }
-//     });
-//     //directors
-//     $("#directors1").focus();
+    // $("#year").blur(function () {
+    //     if ($(this).val() != '') {
+    //         $("#title").attr("disabled", "disabled");
+    //     }
+    // });
 
-//     $("#directors1").blur(function () {
-//         if ($(this).val() != '') {
-//             $("#directors2").removeAttr("disabled");
-//         }
-//         else {
-//             $("#directors2").attr("disabled", "disabled");
-//             $("#directors3").attr("disabled", "disabled");
-//             $("#directors4").attr("disabled", "disabled");
-//         }
-//     });
+    // $("#time").focus();
 
-//     $("#keywords2").blur(function () {
-//         if ($(this).val() != '') {
-//             $("#keywords3").removeAttr("disabled");
-//         }
-//         else {
-//             $("#keywords3").attr("disabled", "disabled");
-//             $("#keywords4").attr("disabled", "disabled");
-//         }
-//     });
+    // $("#time").blur(function () {
+    //     if ($(this).val() != '') {
+    //         $("#title").attr("disabled", "disabled");
+    //     }
+    // });
 
-//     $("#keywords3").blur(function () {
-//         if ($(this).val() != '') {
-//             $("#keywords4").removeAttr("disabled");
-//         }
-//         else {
-//             $("#keywords4").attr("disabled", "disabled");
-//         }
-//     });
-// });
+    // $("#directors1").focus();
+
+    // $("#directors1").blur(function () {
+    //     if ($(this).val() != '') {
+    //         $("#title").attr("disabled", "disabled");
+    //     }
+    // });
+
+    // $("#actors1").focus();
+
+    // $("#actors1").blur(function () {
+    //     if ($(this).val() != '') {
+    //         $("#title").attr("disabled", "disabled");
+    //     }
+    // });
+
+    // $("#keywords1").focus();
+
+    // $("#keywords1").blur(function () {
+    //     if ($(this).val() != '') {
+    //         $("#title").attr("disabled", "disabled");
+    //     }
+    // });
+
+
+    // $("#mpaa").focus();
+
+    // $("#mpaa").blur(function () {
+    //     if ($(this).val() != null) {
+    //         $("#title").attr("disabled", "disabled");
+    //     }
+    // });
+
+    // $("#genres").focus();
+
+    // $("#genres").blur(function () {
+    //     if ($(this).val() != null) {
+    //         $("#title").attr("disabled", "disabled");
+    //     }
+    // });
+    
+});
 
 $(document).ready(() => {
     $('#searchForm').submit((e) => {
@@ -246,7 +232,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                         <div class="well text-center">
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
-                                            <form action="/movieDetails" method="get">
+                                            <form action="/movieDetails/${movie.id}" method="get">
                                             <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
@@ -298,7 +284,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                         <div class="well text-center">
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
-                                            <form action="/movieDetails" method="get">
+                                            <form action="/movieDetails/${movie.id}" method="get">
                                             <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
@@ -350,7 +336,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                         <div class="well text-center">
                                             <img id="movie-poster" src= "${image_url}">
                                             <h5>${movie.title}</h5>
-                                            <form action="/movieDetails" method="get">
+                                            <form action="/movieDetails/${movie.id}" method="get">
                                             <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
@@ -404,7 +390,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                         <div class="well text-center">
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
-                                            <form action="/movieDetails" method="get">
+                                            <form action="/movieDetails/${movie.id}" method="get">
                                             <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
@@ -448,7 +434,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                         <div class="well text-center">
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
-                                            <form action="/movieDetails" method="get">
+                                            <form action="/movieDetails/${movie.id}" method="get">
                                             <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
@@ -491,7 +477,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                         <div class="well text-center">
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
-                                            <form action="/movieDetails" method="get">
+                                            <form action="/movieDetails/${movie.id}" method="get">
                                             <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
@@ -535,7 +521,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                         <div class="well text-center">
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
-                                            <form action="/movieDetails" method="get">
+                                            <form action="/movieDetails/${movie.id}" method="get">
                                             <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
@@ -568,7 +554,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
               <div class="well text-center">
                 <img src= "${image_url}" id="movie-poster">
                 <h5>${movie.title}</h5>
-                <form action="/movieDetails" method="get">
+                <form action="/movieDetails/${movie.id}" method="get">
                 <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                 </form>
               </div>
@@ -606,7 +592,7 @@ function getMovies(title) {
               <div class="well text-center">
               <img src= "${image_url}" id="movie-poster" name="movie-poster">
                 <h5 name="movie-title">${movie.title}</h5>
-                <form action="/movieDetails" method="get">
+                <form action="/movieDetails/${movie.id}" method="get">
                 <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Movie Details</a>
                 </form>
               </div>

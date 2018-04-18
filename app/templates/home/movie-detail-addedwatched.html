@@ -1,0 +1,38 @@
+{% import "bootstrap/wtf.html" as wtf %} {% extends "base.html" %} {% block title %}Dashboard{% endblock %} {% block body
+    %}
+    <div class="wrapper" style="margin-top:5%">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-20">
+                    <div class="container">
+                        <div id="movie" class="well"></div>
+                    </div>
+    
+                    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+                        crossorigin="anonymous"></script>
+                    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+                    <script src="{{ url_for('static', filename='js/MovieDetailsAddedWatched.js') }}"></script>
+                    <script>
+                        getMovie();
+                    </script>
+                    <!-- <script>
+                        $("#watch_form").submit(function (e) {
+                            e.preventDefault(); // Prevent the normal form submit
+    
+                            $.ajax({
+                                type: "POST",
+                                url: "{{ url_for('home.addToWatchList') }}",
+                                data: $("#watch_form").serialize(),
+                                success: function (data) {
+                                    console.log(data);
+                                    // Do something here. For example, the server can return JSON here and you use Js to create the template client-side, or you server can return an HTML fragment and here you append it to a dom node
+                                }
+                            });
+                        });
+                    </script> -->
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    {% endblock %}

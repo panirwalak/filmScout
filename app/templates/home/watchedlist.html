@@ -13,7 +13,7 @@
                                 <img src="{{entry.film_poster_path}}" id="movie-poster" name="movie-poster">
                                 <h5 name="movie-title">{{entry.film_title}}</h5>
                                 <p>My Rating: {{entry.rating}}</p>
-                                <form action="/movieDetails" method="get">
+                                <form action="/movieDetails/{{entry.film_id}}" method="get">
                                     <button type=submit name="detail-button" onclick="movieSelected('{{entry.film_id}}')" value="{{entry.film_id}}" class="btn btn-primary">Film Details</a>
                                 </form>
                             </div>

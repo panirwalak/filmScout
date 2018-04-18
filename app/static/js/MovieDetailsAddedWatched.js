@@ -79,20 +79,8 @@ function getMovie() {
                                     </div>
                                     <div class="col-md-4">
                                             <form id="watched_form" action="/addToWatchedList" method="post" style="margin-right:5%;float:left">
-                                            <span>Rating</span>
-                                            <select name="rating"> 
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select>
-                                            <button id="watch-button" type=submit name="watched" value="${movie.id}+${movie.title}+${image_url}" class="btn btn-primary">I've seen it!</button>
+                                            
+                                            <button id="watch-button" type=submit name="watched" value="${movie.id}+${movie.title}+${image_url}" class="btn btn-primary">Added to seen list!</button>
                                             </form>
                                             <form id="watch_form" action="/addToWatchList" method="post" style="float:left">
                                             <button type=submit name="watch" value="${movie.id}+${movie.title}+${image_url}" class="btn btn-primary">I want to watch!</button>
