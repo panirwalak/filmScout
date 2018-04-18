@@ -6,10 +6,10 @@
 
 1. Install Python 2.7, Git, MySQL Ver 14.14 Distrib 5.7.21, virtualenv, in your computer, if you don't have it already.
 
-```shell
-Virtualenv installation
-    [sudo] pip install virtualenv
-    ```
+- virtualenv installation
+```
+sudo pip install virtualenv
+```
 
 2. Get the source code on your machine via git.
 
@@ -26,7 +26,7 @@ Virtualenv installation
     pip install -r requirements.txt
     ```
     
-    ```
+    
  5. Run the dev server
     ```
     export FLASK_CONFIG=development
