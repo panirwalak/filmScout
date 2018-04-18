@@ -26,13 +26,13 @@ sudo pip install virtualenv
     virtualenv venv
     source venv/bin/activate  # run this command everytime before working on project
     pip install -r requirements.txt
+    export FLASK_CONFIG=development
+    export FLASK_APP=run.py
     ```
     
     
  5. Run the dev server
     ```
-    export FLASK_CONFIG=development
-    export FLASK_APP=run.py
     flask run
        Serving Flask app "run"
        *Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
