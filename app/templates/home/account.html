@@ -7,12 +7,28 @@
                     <div class="row" style="margin-top:5%">
                         <h3>My Account</h3>
                         <br>
-                        <div class="col-md-3">
-                            <div style="align:center" class="well text-center">
-                               <div>First Name: {{user.first_name}}</div>
-                               <div>Last Name: {{user.last_name}}</div>
-                               <div>Username: {{user.username}}</div>
-                               <div>Email: {{user.email}}</div>
+                        <div class="col-md-12">
+                            <div class="well">
+                               <h3>First Name: {{user.first_name}}</h3>
+                               <form action="/changeFirst">
+                                <input class="btn btn-default"  id="submit" name="first" type="submit" value="Change First Name">
+                               </form>
+                               <h3>Last Name: {{user.last_name}}</h3>
+                               <form action="/changeLast">
+                                <input class="btn btn-default"  id="submit" name="last" type="submit" value="Change Last Name">
+                               </form>
+                               <h3>Username: {{user.username}}</h3>
+                               <form action="/changeUsername"> 
+                                <input class="btn btn-default"  id="submit" name="username" type="submit" value="Change Username">
+                               </form>
+                               <h3>Email: {{user.email}}</h3>
+                               <form action="/changeEmail">
+                                <input class="btn btn-default"  id="submit" name="email" type="submit" value="Change Email">
+                               </form>
+                               <h3>Password</h3>
+                               <form action="/changePassword">
+                                <input class="btn btn-default"  id="submit" name="password" type="submit" value="Change Password">
+                               </form>
                             </div>
                         </div>
                     </div>

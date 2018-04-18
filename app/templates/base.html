@@ -27,6 +27,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand topnav" href="{{ url_for('home.homepage') }}">Film Scout</a>
+                <a class="navbar-brand topnav" href="{{ url_for('home.helpMe') }}">Help</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -35,7 +36,7 @@
                         <a href="{{ url_for('home.dashboard') }}">Search</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('home.watchedlist') }}">Movies I've Seen</a>
+                        <a href="{{ url_for('home.watchedlist') }}">Films I've Seen</a>
                     </li>
                     <li>
                         <a href="{{ url_for('home.watchlist') }}">Watchlist</a>

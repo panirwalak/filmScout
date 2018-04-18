@@ -60,7 +60,7 @@ function getMovie() {
                 .then((response) => {
                     console.log(response);
                     if (response.data.results.length == 0) {
-                        youtube_url = ""
+                        youtube_url = "http://www.techsmyway.com/wp-content/uploads/2018/01/Fix-This-Video-is-not-available-in-your-Country-Error-on-YouTube.png"
                     } else {
                         let trailerKey = response.data.results[0].key;
                         console.log(trailerKey);
@@ -101,11 +101,30 @@ function getMovie() {
                                     <div class="col-md-8">
                                         <h2>${movie.title}</h2>
                                         <ul id=movie-info class="list-group">
-                                        <li class="list-group-item"><strong>Released:</strong> ${movie.release_date}</li>
-                                        <li class="list-group-item"><strong>Rated:</strong> ${movie.vote_average}</li>
-                                        <li class="list-group-item"><strong>Genres:</strong> ${movie.genres[0].name + ", " + movie.genres[1].name}</li>
-                                        <li class="list-group-item"><strong>Cast:</strong> ${cast[0].name + ", " + cast[1].name + ", "
-                                + cast[2].name + ", " + cast[3].name + ", " + cast[4].name + ", " + cast[5].name} </li>
+                                        <li class="list-group-item"><strong>Released: </strong> ${movie.release_date}</li>
+                                        <li class="list-group-item"><strong>Rated: </strong> ${movie.vote_average}</li>
+                                        <li class="list-group-item"><strong>Rated: </strong>`
+
+                            for(var i =0; i< movie.genres.length; i++){
+                                if(i==movie.genres.length-1){
+                                    output+= `${movie.genres[i].name}`;
+                                } else {
+                                    output+= `${movie.genres[i].name}, `;
+                                }
+                                
+                            }
+                                        output+=`</li>
+                                        <li class="list-group-item"><strong>Cast: </strong>`
+                            for(var i =0; i< 5; i++){
+                                if(i==4){
+                                    output+= `${cast[i].name}`;
+                                } else {
+                                    output+= `${cast[i].name}, `;
+                                }
+                                
+                            }
+                                        
+                                        output+=`</li>
                                         <li class="list-group-item"><strong>Director:</strong> ${crew[0].name} </li>
                                         <li class="list-group-item"><strong>Plot:</strong>${" " + movie.overview}</li>
                                         </ul>

@@ -184,17 +184,17 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
         }
         DISCOVER_URL = DISCOVER_URL + "&primary_release_date.gte=" + year;
     }
-    if (genres.length != 0) {
+    if (genres.length != 0 && genres[0]!= "") {
         DISCOVER_URL = DISCOVER_URL + "&with_genres=";
-        if (genres.length == 1) {
+        if (genres.length == 1 ) {
             DISCOVER_URL = DISCOVER_URL + genres.toString();
         } else {
             DISCOVER_URL = DISCOVER_URL + genres.toString().replaceAll(",", "|");
         }
     }
-    if (mpaa_ratings.length != 0) {
+    if (mpaa_ratings.length != 0 && mpaa_ratings[0]!= "") {
         DISCOVER_URL = DISCOVER_URL + "&certification=";
-        if (mpaa_ratings.length == 1) {
+        if (mpaa_ratings.length == 1 ) {
             DISCOVER_URL = DISCOVER_URL + mpaa_ratings.toString();
         } else {
             DISCOVER_URL = DISCOVER_URL + mpaa_ratings.toString().replaceAll(",", "|");
@@ -227,7 +227,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                 if (!(DISCOVER_URL.includes("with_people"))) {
                                     DISCOVER_URL = DISCOVER_URL + "&with_people=" + id;
                                 } else {
-                                    DISCOVER_URL = DISCOVER_URL + "|" + id;
+                                    DISCOVER_URL = DISCOVER_URL + "%2C" + id;
                                 }
                                 console.log(DISCOVER_URL);
                                 axios.get(DISCOVER_URL)
@@ -247,7 +247,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
                                             <form action="/movieDetails" method="get">
-                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Movie Details</a>
+                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
                                         </div>
@@ -279,7 +279,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                         if (!(DISCOVER_URL.includes("with_people"))) {
                             DISCOVER_URL = DISCOVER_URL + "&with_people=" + id;
                         } else {
-                            DISCOVER_URL = DISCOVER_URL + "|" + id;
+                            DISCOVER_URL = DISCOVER_URL + "%2C" + id;
                         }
                         console.log(DISCOVER_URL);
                         axios.get(DISCOVER_URL)
@@ -299,7 +299,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
                                             <form action="/movieDetails" method="get">
-                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Movie Details</a>
+                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
                                         </div>
@@ -331,7 +331,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                         if (!(DISCOVER_URL.includes("with_people"))) {
                             DISCOVER_URL = DISCOVER_URL + "&with_people=" + id;
                         } else {
-                            DISCOVER_URL = DISCOVER_URL + "|" + id;
+                            DISCOVER_URL = DISCOVER_URL + "%2C" + id;
                         }
                         console.log(DISCOVER_URL);
                         axios.get(DISCOVER_URL)
@@ -351,7 +351,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                             <img id="movie-poster" src= "${image_url}">
                                             <h5>${movie.title}</h5>
                                             <form action="/movieDetails" method="get">
-                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Movie Details</a>
+                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
                                         </div>
@@ -385,7 +385,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                         if (!(DISCOVER_URL.includes("with_people"))) {
                             DISCOVER_URL = DISCOVER_URL + "&with_people=" + id;
                         } else {
-                            DISCOVER_URL = DISCOVER_URL + "|" + id;
+                            DISCOVER_URL = DISCOVER_URL + "%2C" + id;
                         }
                         console.log(DISCOVER_URL);
                         axios.get(DISCOVER_URL)
@@ -405,7 +405,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
                                             <form action="/movieDetails" method="get">
-                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Movie Details</a>
+                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
                                         </div>
@@ -449,7 +449,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
                                             <form action="/movieDetails" method="get">
-                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Movie Details</a>
+                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
                                         </div>
@@ -472,7 +472,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                 if (!(DISCOVER_URL.includes("with_people"))) {
                     DISCOVER_URL = DISCOVER_URL + "&with_people=" + id;
                 } else {
-                    DISCOVER_URL = DISCOVER_URL + "|" + id;
+                    DISCOVER_URL = DISCOVER_URL + "%2C" + id;
                 }
                 console.log(DISCOVER_URL);
                 axios.get(DISCOVER_URL)
@@ -492,7 +492,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
                                             <form action="/movieDetails" method="get">
-                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Movie Details</a>
+                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
                                         </div>
@@ -516,7 +516,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                 if (!(DISCOVER_URL.includes("with_people"))) {
                     DISCOVER_URL = DISCOVER_URL + "&with_people=" + id;
                 } else {
-                    DISCOVER_URL = DISCOVER_URL + "|" + id;
+                    DISCOVER_URL = DISCOVER_URL + "%2C" + id;
                 }
                 console.log(DISCOVER_URL);
                 axios.get(DISCOVER_URL)
@@ -536,7 +536,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                                             <img src= "${image_url}" id="movie-poster">
                                             <h5>${movie.title}</h5>
                                             <form action="/movieDetails" method="get">
-                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Movie Details</a>
+                                            <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                                             </form>
                                         </div>
                                         </div>
@@ -569,7 +569,7 @@ function discoverMovies(genres, mpaa_ratings, keyword1, actor1, director1, isBef
                 <img src= "${image_url}" id="movie-poster">
                 <h5>${movie.title}</h5>
                 <form action="/movieDetails" method="get">
-                <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Movie Details</a>
+                <button type=submit name="detail-button" onclick="movieSelected('${movie.id}')" value="${movie.id}" class="btn btn-primary">Film Details</a>
                 </form>
               </div>
             </div>
